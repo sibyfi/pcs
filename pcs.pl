@@ -15,7 +15,7 @@
 # ORGANIZATION: NetAppU
 #      VERSION: 8
 #      CREATED: 09/15/2016 08:37:06 AM
-#     REVISION: 1
+#     REVISION: 2
 #===============================================================================
 
 use strict;
@@ -276,20 +276,30 @@ foreach (@elements) {
 		$offering_reg = "AMER" if ($offering_reg =~ /AMERICAS|Americas/);
 		$worksheet->write($row,7,$offering_reg,$format1);
 		$worksheet->write($row,8,$max_stud_count,$format1);
-		if ($curr_enrolled > "4") {
-			$worksheet->write($row,9,$curr_enrolled,$format1);
-		} else {
-			$worksheet->write($row,9,$curr_enrolled,$format_yellow);
-		}
+		# ############
+		# Student Count coloring
+		# ############
+		# if (($curr_enrolled >= $min_size) || ($curr_enrolled < $min_size && $days_remaining >= '30')) {
+		$worksheet->write($row,9,$curr_enrolled,$format1);
+		# } else {
+		# 	$worksheet->write($row,9,$curr_enrolled,$format_yellow);
+		# }
+		##############
+		# Open Seats coloring
+		# ############
+		# Less than 6 and less than 14 days
 		if ($curr_enrolled < $min_size && $days_remaining <= '14') {
 			$worksheet->write($row,10,$open_seats,$format_red);
+		# Less than 6 and less than 30 days
 		} elsif ($curr_enrolled < $min_size && $days_remaining <= '30') {
 			$worksheet->write($row,10,$open_seats,$format_yellow);
+		# class full
 		} elsif ($curr_enrolled == $max_stud_count) {
 			$worksheet->write($row,10,$open_seats,$format_green);
 		} else {
 			$worksheet->write($row,10,$open_seats,$format1);
 		}
+
 		$worksheet->write($row,11,$cust_serv_rep,$format2);
 		$worksheet->write($row,12,$offering_num,$format_num);
 		if (defined($lms)) {
@@ -309,6 +319,9 @@ foreach (@elements) {
 	$row++;
 	$line_num++;
 }
+$worksheet->write(1,16,"Class is full",$format_green);
+$worksheet->write(2,16,"Less than 6 Students and Less than 30 days",$format_yellow);
+$worksheet->write(3,16,"Less than 6 Students and Less than 2 weeks",$format_red);
 
 #####################
 # set column widths #
@@ -328,6 +341,7 @@ $worksheet->set_column('M:M',10);
 $worksheet->set_column('N:N',15);
 $worksheet->set_column('O:O',8);
 $worksheet->set_column('P:P',12);
+$worksheet->set_column('Q:Q',45);
 
 ##################
 # summary output #
