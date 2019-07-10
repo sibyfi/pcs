@@ -35,7 +35,6 @@ if ($#ARGV != 0) {
 # vars #
 ########
 my $input = $ARGV[0];
-my $version = "4";
 my $time = Tdate();
 # https://netapp.sabacloud.com/Saba/Web_spf/NA1PRD0047/common/leclassview/virtc-00361210
 my $link_base = "https://netapp.sabacloud.com/Saba/Web_spf/NA1PRD0047/common/leclassview/";
