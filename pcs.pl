@@ -25,16 +25,20 @@ use utf8;
 use Text::ParseWords;
 use Time::Piece;
 use Excel::Writer::XLSX;
-# use Getopt::Std;
+use Getopt::Std;
 
-if ($#ARGV != 0) {
-        Usage();
-}
+our($opt_i,$opt_o);
+getopts ("o:i:");
+
+# if ($#ARGV != 3) {
+# 	Usage();
+# }
 
 ########
 # vars #
 ########
-my $input = $ARGV[0];
+# my $outputdir = "output";
+# my $input = $ARGV[0];
 my $time = Tdate();
 # https://netapp.sabacloud.com/Saba/Web_spf/NA1PRD0047/common/leclassview/virtc-00361210
 my $link_base = "https://netapp.sabacloud.com/Saba/Web_spf/NA1PRD0047/common/leclassview/";
@@ -42,11 +46,15 @@ my $link_base = "https://netapp.sabacloud.com/Saba/Web_spf/NA1PRD0047/common/lec
 my $more_offers_pre = "https://netapp.sabacloud.com/Saba/Web_spf/NA1PRD0047/common/ledetail/";
 my @fields;
 
+if (!defined($opt_o) || !defined($opt_i) ) {
+    Usage();
+}
+
 ########
 # help #
 ########
 sub Usage {
-	print "Usage: $0 <csv file>\n";
+	print "Usage: $0 -i <input file> -o <output file>\n";
 	exit 0;
 }
 
@@ -86,7 +94,7 @@ sub Tdate {
 ##############################
 # open file and create array #
 ##############################
-open("FH1","<$input") or die "Could not open file $!\n";
+open("FH1","<$opt_i") or die "Could not open file $!\n";
 my @elements = <FH1>;
 shift(@elements);
 chomp(@elements);
@@ -96,7 +104,7 @@ my $elements_len = @elements;
 # init workbook #
 #################
 my $outputfile = "Class_Schedule" ."_" . $time . ".xlsx";
-my $workbook = Excel::Writer::XLSX->new("output/$outputfile");
+my $workbook = Excel::Writer::XLSX->new("$opt_o/$outputfile");
 my $worksheet = $workbook->add_worksheet();
 $worksheet->freeze_panes(1, 0);
 $worksheet->autofilter('A1:P1');
@@ -275,6 +283,7 @@ foreach (@elements) {
 		$offering_reg = "AMER" if ($offering_reg =~ /AMERICAS|Americas/);
 		$worksheet->write($row,7,$offering_reg,$format1);
 		$worksheet->write($row,8,$max_stud_count,$format1);
+
 		# ############
 		# Student Count coloring
 		# ############
@@ -283,18 +292,19 @@ foreach (@elements) {
 		# } else {
 		# 	$worksheet->write($row,9,$curr_enrolled,$format_yellow);
 		# }
+
 		##############
 		# Open Seats coloring
 		# ############
+		# class full
+		if ($curr_enrolled == $max_stud_count) {
+			$worksheet->write($row,10,$open_seats,$format_green);
 		# Less than 6 and less than 14 days
-		if ($curr_enrolled < $min_size && $days_remaining <= '14') {
+		} elsif ($curr_enrolled < $min_size && $days_remaining <= '14') {
 			$worksheet->write($row,10,$open_seats,$format_red);
 		# Less than 6 and less than 30 days
 		} elsif ($curr_enrolled < $min_size && $days_remaining <= '30') {
 			$worksheet->write($row,10,$open_seats,$format_yellow);
-		# class full
-		} elsif ($curr_enrolled == $max_stud_count) {
-			$worksheet->write($row,10,$open_seats,$format_green);
 		} else {
 			$worksheet->write($row,10,$open_seats,$format1);
 		}

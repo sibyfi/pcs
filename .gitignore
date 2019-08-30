@@ -1,3 +1,5 @@
 archive/
 output/
-Upcoming Class Schedule.csv
+pcs-old.pl
+*.csv
+.DS_Store
