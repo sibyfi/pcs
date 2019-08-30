@@ -1,5 +1,4 @@
-archive/
-output/
-pcs-old.pl
-*.csv
-.DS_Store
+*
+!pcs.pl
+!README.md
+!.gitignore
