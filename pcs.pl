@@ -107,7 +107,7 @@ my $outputfile = "Class_Schedule" ."_" . $time . ".xlsx";
 my $workbook = Excel::Writer::XLSX->new("$opt_o/$outputfile");
 my $worksheet = $workbook->add_worksheet();
 $worksheet->freeze_panes(1, 0);
-$worksheet->autofilter('A1:P1');
+$worksheet->autofilter('A1:S1');
 $worksheet->set_row(0, 30);
 
 ####################
@@ -208,6 +208,9 @@ my @header = ("Course Name",
 	"Offering ID",
 	"More Offerings",
 	"Link",
+	"Catalog Domain Name",
+	"Offering Domain",
+	"Instructor",
 	"Display for Learner");
 
 my $col = 0;
@@ -242,6 +245,7 @@ foreach (@elements) {
 	my $max_stud_count,
 	my $cust_serv_rep,
 	my $class_type,
+	my $domain,
 	my $offering_status) = @fields;
 
 	my $perc_full;
@@ -320,17 +324,21 @@ foreach (@elements) {
 			$worksheet->write_url($row,13,"${more_offers}",$format_link,'More Offerings');
 			$worksheet->write_url($row,14,"${link}",$format_link,'ENROLL');
 		} else {
+			$worksheet->write_url($row,13,"${more_offers}",$format_link,'More Offerings');
 			$worksheet->write($row,14,"FixUrl($enroll_link)",$format_link,'ENROLL');
 		}
-		$worksheet->write($row,15,$disp_for_learner,$format1);
+		$worksheet->write($row,15,$offering_dom,$format1);
+		$worksheet->write($row,16,$offering_dom,$format1);
+		$worksheet->write($row,17,$offering_instr,$format1);
+		$worksheet->write($row,18,$disp_for_learner,$format1);
 		$col++;
 	}
 	$row++;
 	$line_num++;
 }
-$worksheet->write(1,16,"Class is full",$format_green);
-$worksheet->write(2,16,"Less than 6 Students and Less than 30 days",$format_yellow);
-$worksheet->write(3,16,"Less than 6 Students and Less than 2 weeks",$format_red);
+$worksheet->write(1,20,"Class is full",$format_green);
+$worksheet->write(2,20,"Less than 6 Students and Less than 30 days",$format_yellow);
+$worksheet->write(3,20,"Less than 6 Students and Less than 2 weeks",$format_red);
 
 #####################
 # set column widths #
@@ -350,7 +358,10 @@ $worksheet->set_column('M:M',10);
 $worksheet->set_column('N:N',15);
 $worksheet->set_column('O:O',8);
 $worksheet->set_column('P:P',12);
-$worksheet->set_column('Q:Q',45);
+$worksheet->set_column('Q:Q',12);
+$worksheet->set_column('R:R',12);
+$worksheet->set_column('S:S',12);
+$worksheet->set_column('U:U',45);
 
 ##################
 # summary output #
