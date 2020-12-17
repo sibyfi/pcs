@@ -1,5 +1,5 @@
 *
-!python
+!python/
 !pcs*.pl
 !README.md
 !.gitignore
