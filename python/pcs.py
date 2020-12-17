@@ -182,6 +182,8 @@ outSheet.set_column('T:T', 19.5)
 
 # ignore 'number stored as text' stupid warning
 outSheet.ignore_errors({'number_stored_as_text': 'L2:L100000'})
+
+# hide gridlines
 outSheet.hide_gridlines(option=2)
 
 # close workbook
