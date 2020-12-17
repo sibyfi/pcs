@@ -1,5 +1,9 @@
-*
-!python/
-!pcs*.pl
-!README.md
-!.gitignore
+archive/
+.*
+*.csv
+*.xlsx
+# *
+# !python/
+# !pcs*.pl
+# !README.md
+# !.gitignore
