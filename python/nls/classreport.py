@@ -4,23 +4,23 @@ import csv
 import re
 
 class ComputeDate:
-    """ This method pulls in the start and end dates """
+    """ This Class computes dates """
     def __init__(self, start_date, end_date):
+        """ This method pulls in the start and end dates """
         self.start_date = start_date
         self.end_date   = end_date
-    """ This computes the total number of days for the class """
-
     def date_diff(self):
+        """ This computes the total number of days for the class """
         d1 = datetime.strptime(self.start_date, "%Y-%m-%d")
         d2 = datetime.strptime(self.end_date, "%Y-%m-%d")
         return abs((d2 - d1).days) + 1
 
 class CheckDatesAlert:
-    """ This method pulls in the start date """
     def __init__(self, start_date):
+        """ This method pulls in the start date """
         self.start_date = start_date
-    
     def alert(self):
+        """ This method calculates the duration of the course. """ 
         d1 = datetime.strptime(self.start_date, "%Y-%m-%d")
         d2 = datetime.now()
         return (abs(d2 - d1).days)
@@ -28,6 +28,7 @@ class CheckDatesAlert:
 class BuildCsv:
     """ This class manipulates the csv data """
     def __init__(self, reader):
+        """ This method pulls in the data """
         self.reader          = reader
         self.header          = next(self.reader)
         self.course_name     = self.header[1]
@@ -106,10 +107,14 @@ class BuildCsv:
         return data
 
 class StripUrl:
+    """ This Class reformats the URL """
     def __init__(self, enroll, offering_number):
+        """ This inits the variables """
         self.enroll          = enroll
         self.offering_number = offering_number
     def fixurl(self):
+        """ This method fixes the broken URL's and
+        puts them in the correct for mat for excel """
         if re.findall("learningcenter", self.enroll):
             url_base = "https://netapp.sabacloud.com/Saba/Web_spf/NA1PRD0047/common/leclassview/virtc-"
             return (str(url_base) + str(self.offering_number))
