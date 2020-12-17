@@ -2,6 +2,8 @@ archive/
 .*
 *.csv
 *.xlsx
+*.pyc
+__pycache__
 # *
 # !python/
 # !pcs*.pl
