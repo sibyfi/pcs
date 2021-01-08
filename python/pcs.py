@@ -97,6 +97,7 @@ data_row = 2
 data_col = "A"
 x = 0
 len_data = formatcsv.len_data()
+counter = 1
 for bigdata in formatcsv.create_csv_data():
     course_name            = bigdata[0]
     course_number          = bigdata[1]
@@ -158,6 +159,8 @@ for bigdata in formatcsv.create_csv_data():
         else:
             x += 1
 
+    print(str(counter) + " - " + str(offering_number))
+    counter += 1
     data_col = "A"
     data_row += 1
 
