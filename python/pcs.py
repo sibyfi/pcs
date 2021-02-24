@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 from nls.classreport import *
 from datetime import datetime
 import csv
