@@ -51,7 +51,7 @@ class BuildCsv:
         self.instructor      = self.header[9]
 
         self.new_header = [self.course_name, self.course_num,
-            self.start_date, self.end_date, "Course Duration", self.location, self.region,
+            self.start_date, self.end_date, "Course Duration (Days)", self.location, self.region,
             self.max_students, self.enrolled, "Open Seats", self.rep, self.offering_num,
             self.enroll, self.cat_dom_name, self.offering_dom, self.disp_for_learn, 
             self.class_type, self.offer_status, self.content_version, self.instructor]
