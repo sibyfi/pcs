@@ -21,7 +21,6 @@ reader    = csv.reader(file1)
 # outputfile stuff
 now        = datetime.now().strftime("%Y-%m-%d-%H%M%S")
 outputfile = 'Class_Schedule_' + now + ".xlsx"
-# print("Output file: " + outputfile)
 
 # call nls
 formatcsv = BuildCsv(reader)
