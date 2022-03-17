@@ -186,7 +186,7 @@ my $format_num = $workbook->add_format (
 	border_color => "#0067C5",
 	valign       => 'vcenter',
 	align        => 'center',
-	num_format   => '00000000',
+	num_format   => '0000000000',
 );
 
 ################
@@ -354,7 +354,7 @@ $worksheet->set_column('I:I',8);
 $worksheet->set_column('J:J',10);
 $worksheet->set_column('K:K',8);
 $worksheet->set_column('L:L',20);
-$worksheet->set_column('M:M',10);
+$worksheet->set_column('M:M',12);
 $worksheet->set_column('N:N',15);
 $worksheet->set_column('O:O',8);
 $worksheet->set_column('P:P',12);
