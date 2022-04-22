@@ -91,7 +91,7 @@ class BuildCsv:
             customer_service_rep   = str(row[14])
             class_type             = str(row[15])
             offering_status        = str(row[16])
-            content_version_number = int(row[17])
+            content_version_number = str(row[17])
             """
             if (customer_service_rep == "RUCKER_INTERNAL"):
                 data.append([course_name, course_number, offering_start_date, offering_end_date, course_duration,

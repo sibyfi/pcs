@@ -144,8 +144,11 @@ for bigdata in formatcsv.create_csv_data():
             else:
                 outSheet.write_number(data_col + str(data_row), int(write_row), number_format)
                 data_col = chr(ord(data_col) + 1)
-        elif x == 4 or x == 7 or x == 9 or x == 15 or x == 18:
+        elif x == 4 or x == 7 or x == 9 or x == 15:
             outSheet.write_number(data_col + str(data_row), int(write_row), number_format)
+            data_col = chr(ord(data_col) + 1)
+        elif x == 18:
+            outSheet.write(data_col + str(data_row), write_row, normal_format)
             data_col = chr(ord(data_col) + 1)
         elif x == 2 or x == 3:
             outSheet.write(data_col + str(data_row), write_row, date_format)
