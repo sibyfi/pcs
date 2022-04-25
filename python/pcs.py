@@ -91,9 +91,6 @@ full_format.set_border_color('#0067C5')
 
 
 
-# set global xlsx params
-outSheet.autofilter('A1:T1')
-
 head_row = 1
 head_col = "A"
 for x in formatcsv.create_csv_header():
@@ -200,12 +197,14 @@ outSheet.ignore_errors({'number_stored_as_text': 'L2:L100000'})
 # hide gridlines
 outSheet.hide_gridlines(option=2)
 
+# set global xlsx params
+outSheet.autofilter('A1:T1')
+
 # close workbook
 outWorkbook.close()
 
 # close files
 file1.close()
-# file2.close()
 
 print("\nOutput file: " + outputfile)
 
