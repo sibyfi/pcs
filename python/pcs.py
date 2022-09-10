@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 
+# Instructions:  Run the following commands download source code and install required packages.
+# 
+# git clone https://github.com/sibyfi/pcs
+# pip3 install xlsxwriter
+# pip3 install argparse
+# 
+
 
 from nls.classreport import *
 from datetime import datetime
