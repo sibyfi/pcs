@@ -16,6 +16,10 @@ import re
 import sys
 import argparse
 
+# background yes/no
+print_console = "yes"
+
+# command line arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--input', help="Input file", required=True)
 args = parser.parse_args()
