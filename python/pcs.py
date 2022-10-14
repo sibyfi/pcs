@@ -16,8 +16,8 @@ import re
 import sys
 import argparse
 
-# background yes/no
-print_console = "yes"
+# background true/false
+print_console = False
 
 # command line arguments
 parser = argparse.ArgumentParser()
@@ -178,7 +178,7 @@ for bigdata in formatcsv.create_csv_data():
         else:
             x += 1
 
-    print(str(counter) + " - " + str(offering_number))
+    if print_console: print(str(counter) + " - " + str(offering_number))
     counter += 1
     data_col = "A"
     data_row += 1
@@ -217,7 +217,7 @@ outWorkbook.close()
 # close files
 file1.close()
 
-print("\nOutput file: " + outputfile)
+if print_console: print("\nOutput file: " + outputfile)
 
 
 
