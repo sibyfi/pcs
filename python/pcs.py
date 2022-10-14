@@ -16,7 +16,7 @@ import re
 import sys
 import argparse
 
-# background true/false
+# background the output: True/False
 print_console = False
 
 # command line arguments
