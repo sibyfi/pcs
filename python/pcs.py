@@ -36,7 +36,6 @@ outputfile = 'Class_Schedule_' + now + ".xlsx"
 # call nls
 formatcsv = BuildCsv(reader)
 
-
 outWorkbook = xlsxwriter.Workbook(outputfile)
 outSheet    = outWorkbook.add_worksheet()
 
