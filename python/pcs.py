@@ -17,7 +17,7 @@ import sys
 import argparse
 
 # background the output: True/False
-print_console = False
+print_console = True
 
 # command line arguments
 parser = argparse.ArgumentParser()
