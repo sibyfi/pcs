@@ -5,6 +5,7 @@ archive/
 *.pyc
 __pycache__
 git.txt
+*-testing.py
 # *
 # !python/
 # !pcs*.pl

@@ -108,21 +108,23 @@ class BuildCsv:
 
 class StripUrl:
     """ This Class reformats the URL """
-    def __init__(self, enroll, offering_number):
+    def __init__(self, enroll, offering_number, offering_location):
         """ This inits the variables """
-        self.enroll          = enroll
-        self.offering_number = offering_number
+        self.enroll            = enroll
+        self.offering_number   = offering_number
+        self.offering_location = offering_location
     def fixurl(self):
         """ This method fixes the broken URL's and
         puts them in the correct for mat for excel """
-        if re.findall("learningcenter", self.enroll):
+        if re.findall("Virtual", self.offering_location):
             url_base = "https://netapp.sabacloud.com/Saba/Web_spf/NA1PRD0047/common/leclassview/virtc-"
             return (str(url_base) + str(self.offering_number))
-
-        else:
-            regex = re.compile('{}(.*){}'.format(re.escape('<a href='), re.escape('>Enroll')))
-            new_url = regex.findall(self.enroll)[0]
-            return new_url
+        else:        
+            url_base = "https://netapp.sabacloud.com/Saba/Web_spf/NA1PRD0047/common/leclassview/class-"
+            return (str(url_base) + str(self.offering_number))
+            # regex = re.compile('{}(.*){}'.format(re.escape('<a href='), re.escape('>Enroll')))
+            # new_url = regex.findall(self.enroll)[0]
+            # return new_url
 
 
 

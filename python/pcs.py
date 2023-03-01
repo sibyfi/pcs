@@ -161,7 +161,7 @@ for bigdata in formatcsv.create_csv_data():
             outSheet.write(data_col + str(data_row), write_row, date_format)
             data_col = chr(ord(data_col) + 1)
         elif x == 12:
-            fix_url   = StripUrl(bigdata[12], offering_number)
+            fix_url   = StripUrl(bigdata[12], offering_number, offering_location)
             write_row = fix_url.fixurl()
             outSheet.write_url(data_col + str(data_row), str(write_row), enroll_format, string='Enroll')
             data_col = chr(ord(data_col) + 1)
