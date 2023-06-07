@@ -8,3 +8,9 @@ Instructions:
 For python:
 - pip3 install xlsxwriter
 - pip3 install argparse
+
+For perl:
+- cpan Text::ParseWords
+- cpan Time::Piece
+- cpan Excel::Writer::XLSX
+- cpan Getopt::Std
