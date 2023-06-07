@@ -6,6 +6,7 @@ archive/
 __pycache__
 git.txt
 *testing.py
+.gitignore
 # *
 # !python/
 # !pcs*.pl

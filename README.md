@@ -1,6 +1,6 @@
 # pcs
 Script to re-format the "Upcoming Class Schedule.csv" report
-from the "Operational Reports" tab.
+from the "Operational Reports" tab from BA.
 
 Instructions:
 - git clone https://github.com/sibyfi/pcs
