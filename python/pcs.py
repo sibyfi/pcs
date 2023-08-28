@@ -95,7 +95,7 @@ full_format = outWorkbook.add_format()
 full_format.set_border()
 full_format.set_align('center')
 full_format.set_align('vcenter')
-full_format.set_bg_color('green')
+full_format.set_bg_color('red')
 full_format.set_font_color('white')
 full_format.set_border_color('#0067C5')
 
@@ -140,13 +140,15 @@ for bigdata in formatcsv.create_csv_data():
     for write_row in bigdata:
         if x == 8:
             if currently_enrolled < 6 and date_warning >= 14 and date_warning < 31:
-                outSheet.write_number(data_col + str(data_row), int(write_row), caution_format)
+                # outSheet.write_number(data_col + str(data_row), int(write_row), caution_format)
+                outSheet.write_number(data_col + str(data_row), int(write_row), number_format)
                 data_col = chr(ord(data_col) + 1)
             elif currently_enrolled < 6 and date_warning <= 14:
-                outSheet.write_number(data_col + str(data_row), int(write_row), alert_format)
+                outSheet.write_number(data_col + str(data_row), int(write_row), number_format)
                 data_col = chr(ord(data_col) + 1)
             elif open_seats == 0:
                 outSheet.write_number(data_col + str(data_row), int(write_row), full_format)
+                # outSheet.write_number(data_col + str(data_row), int(write_row), number_format)
                 data_col = chr(ord(data_col) + 1)
             else:
                 outSheet.write_number(data_col + str(data_row), int(write_row), number_format)
