@@ -65,6 +65,11 @@ class BuildCsv:
         self.len_data = len(self.new_header)
         return self.len_data
 
+    def reformat_date(self, old_date):
+        padded_date         = ''.join(x.zfill(2) for x in old_date.split('/'))
+        new_date            = f"20{padded_date[-2:]}-{padded_date[0:2]}-{padded_date[2:4]}"
+        return new_date
+
     def create_csv_data(self):
         """ This method formats the csv data """
         data = []
@@ -74,10 +79,14 @@ class BuildCsv:
             catalog_domain_Name    = str(row[2])
             offering_domain        = str(row[3])
             offering_number        = str(row[4])
-            start_date             = row[5]
-            end_date               = row[6]
-            offering_start_date    = row[5]
-            offering_end_date      = row[6]
+            #
+            start_date             = self.reformat_date(row[5])
+            end_date               = self.reformat_date(row[6])
+            # start_date             = row[5]
+            # end_date               = row[6]
+            ####
+            offering_start_date    = self.reformat_date(row[5])
+            offering_end_date      = self.reformat_date(row[6])
             compute_duration       = ComputeDate(offering_start_date, offering_end_date)
             course_duration        = compute_duration.date_diff()
             offering_location      = str(row[7])

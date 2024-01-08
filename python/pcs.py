@@ -113,9 +113,16 @@ data_col = "A"
 x = 0
 len_data = formatcsv.len_data()
 counter = 1
+print("begin bigdata")
 for bigdata in formatcsv.create_csv_data():
     course_name            = bigdata[0]
     course_number          = bigdata[1]
+    # osd                    = bigdata[2]
+    # oed                    = bigdata[3]
+    # newosd                 = ''.join(x.zfill(2) for x in osd.split('/'))
+    # newoed                 = ''.join(y.zfill(2) for y in oed.split('/'))
+    # offering_start_date    = f"20{newosd[-2:]}-{newosd[0:2]}-{newosd[2:4]}"
+    # offering_end_date      = f"20{newoed[-2:]}-{newoed[0:2]}-{newoed[2:4]}"
     offering_start_date    = bigdata[2]
     offering_end_date      = bigdata[3]
     course_duration        = bigdata[4]
