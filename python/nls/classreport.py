@@ -66,6 +66,10 @@ class BuildCsv:
         return self.len_data
 
     def reformat_date(self, old_date):
+        """
+        this method is to take into consideration
+        the new PowerBI date format
+        """
         padded_date         = ''.join(x.zfill(2) for x in old_date.split('/'))
         new_date            = f"20{padded_date[-2:]}-{padded_date[0:2]}-{padded_date[2:4]}"
         return new_date
