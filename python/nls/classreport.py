@@ -13,6 +13,8 @@ class ComputeDate:
         """ This computes the total number of days for the class """
         d1 = datetime.strptime(self.start_date, "%Y-%m-%d")
         d2 = datetime.strptime(self.end_date, "%Y-%m-%d")
+        # d1 = datetime.strptime(self.start_date, "%m-%d-%Y")
+        # d2 = datetime.strptime(self.end_date, "%m-%d-%Y")
         return abs((d2 - d1).days) + 1
 
 class CheckDatesAlert:
